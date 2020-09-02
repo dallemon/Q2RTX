@@ -18,6 +18,7 @@ jobs:
     - name: Download media files
       # Download necessary files according to readme.md
       run: |
+        mkdir baseq2
         wget -O baseq2/q2rtx_media.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.3.0/q2rtx_media.pkz
         wget -O baseq2/shader_balls.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.2.0/shader_balls.pkz
         wget -O baseq2/blue_noise.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.0.0/blue_noise.pkz
