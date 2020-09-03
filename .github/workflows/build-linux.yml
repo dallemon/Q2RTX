@@ -1,4 +1,4 @@
-name: build linux
+name: linux
 
 on: [push]
 
@@ -41,15 +41,12 @@ jobs:
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config $BUILD_TYPE
+    
+    - name: Add files to tar archive
+      run: tar -cvf q2rtx.tar q2rtx q2rtxded baseq2/
 
-    - name: Download media files
-      # Download necessary files according to readme.md
-      run: curl -LZ -o baseq2/q2rtx_media.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.3.0/q2rtx_media.pkz -o baseq2/shader_balls.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.2.0/shader_balls.pkz -o baseq2/blue_noise.pkz https://github.com/NVIDIA/Q2RTX/releases/download/v1.0.0/blue_noise.pkz
-
-    - uses: actions/upload-artifact@v2
+    - name: Upload finished build
+      uses: actions/upload-artifact@v2
       with:
-        name: linux
-        path: |
-          baseq2/
-          q2rtx
-          q2rtxded
+        name: linux-x64
+        path: q2rtx.tar
